@@ -1,0 +1,39 @@
+﻿@model List<ClienteModel> //Indica que estamos recebendo uma lista da controller por essa View
+@{
+    <div style="display: flex; gap: 12px; align-items: center">
+        <h1>Clientes</h1>
+        <a asp-controller="Cliente" asp-action="PageCreateCliente" class="btn btn-success">Novo Cliente</a> <!-- Passando as ações para esse link -->
+    </div>
+
+    <table class="table text-center align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>E-mail</th>
+                <th>Nascimento</th>
+                <th>Representante</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ClienteModel cliente in Model) //Criando um foreach capturando a lista
+            {
+                <tr>
+                    <td>@cliente.ClienteId</td>
+                    <td>@cliente.NomeCliente</td>
+                    <td>@cliente.SobrenomeCliente</td>
+                    <td>@cliente.Email</td>
+                    <td>@cliente.DataNascimento</td>
+                    <td>@cliente.Representante?.NomeRepresentante</td>
+                    <td>
+                        <a asp-controller="Cliente" asp-action="PageUpdateCliente" asp-route-id="@cliente.ClienteId" class="btn btn-secondary">Editar</a> <!-- Passando as ações para esse link -->
+                        <a asp-controller="Cliente" asp-action="PageConsultCliente" asp-route-id="@cliente.ClienteId" class="btn btn-primary">Consultar</a> <!-- Passando as ações para esse link -->
+                        <a asp-controller="Cliente" asp-action="DeleteCliente" asp-route-id="@cliente.ClienteId" class="btn btn-danger">Excluir</a> <!-- Passando as ações para esse link -->
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

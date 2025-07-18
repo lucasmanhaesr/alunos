@@ -1,0 +1,20 @@
+﻿@model ClienteModel;
+@{
+
+    <h1>Detalhe do cliente</h1>
+
+    <hr />
+
+    <ul class="list-group">
+        <li class="list-group-item">ID: @Model.ClienteId</li>
+        <li class="list-group-item">Nome: @Model.NomeCliente</li>
+        <li class="list-group-item">Sobrenome: @Model.SobrenomeCliente</li>
+        <li class="list-group-item">E-mail: @Model.Email</li>
+        <li class="list-group-item">Data Nascimento: @Model.DataNascimento</li>
+        <li class="list-group-item">Representante: @Model.RepresentanteId</li>
+    </ul>
+
+    <br />
+
+    <a asp-controller="Cliente" asp-action="Index" class="btn btn-secondary">Voltar</a>
+}

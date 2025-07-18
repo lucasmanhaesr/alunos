@@ -1,0 +1,52 @@
+﻿@model ClienteModel;
+@{
+    <h1>Novo Cliente</h1>
+
+    <hr />
+
+    <div>
+        <div>
+            <form asp-controller="Cliente" asp-action="AddCliente"> <!-- Controller e o método que será acionado -->
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="mb-3">
+                    <label asp-for="ClienteId" class="form-label"></label>
+                    <input asp-for="ClienteId" type="text" class="form-control"/> <!-- asp-for = id e name -->
+                    <span asp-validation-for="ClienteId"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="NomeCliente" class="form-label"></label>
+                    <input asp-for="NomeCliente" type="text" class="form-control"/>
+                    <span asp-validation-for="NomeCliente"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="SobrenomeCliente" class="form-label"></label>
+                    <input asp-for="SobrenomeCliente" type="text" class="form-control"/>
+                    <span asp-validation-for="SobrenomeCliente"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" type="text" class="form-control"/>
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DataNascimento" class="form-label"></label>
+                    <input asp-for="DataNascimento" type="datetime-local" class="form-control"/>
+                    <span asp-validation-for="DataNascimento"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Observacao" class="form-label"></label>
+                    <input asp-for="Observacao" type="text" class="form-control"/>
+                    <span asp-validation-for="Observacao"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="RepresentanteId" class="form-label"></label>
+                    <input asp-for="RepresentanteId" type="text" class="form-control"/>
+                    <span asp-validation-for="RepresentanteId"></span>
+                </div>
+                <button action="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
+            <br />
+            <a asp-controller="Cliente" asp-action="Index" class="btn btn-secondary">Voltar</a> <!-- Volta para a lista de clientes -->
+        </div>
+    </div>
+}

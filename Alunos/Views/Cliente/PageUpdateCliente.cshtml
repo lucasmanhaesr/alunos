@@ -1,0 +1,53 @@
+﻿@model ClienteModel;
+@{
+    <h1>Atualizar Cliente</h1>
+
+    <hr />
+
+    <div>
+        <div>
+            <form asp-controller="Cliente" asp-action="UpdateCliente">
+                <!-- Controller e açao que será disparado -->
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="mb-3">
+                    <label asp-for="ClienteId" class="form-label">ID do cliente: @Model.ClienteId</label>
+                    <input asp-for="ClienteId" type="hidden" value="@Model.ClienteId" class="form-control"/>
+                    <span asp-validation-for="ClienteId"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="NomeCliente" class="form-label"></label>
+                    <input asp-for="NomeCliente" type="text" value="@Model.NomeCliente" class="form-control"/>
+                    <span asp-validation-for="NomeCliente"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="SobrenomeCliente" class="form-label"></label>
+                    <input asp-for="SobrenomeCliente" type="text" value="@Model.SobrenomeCliente" class="form-control"/>
+                    <span asp-validation-for="SobrenomeCliente"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" type="text" value="@Model.Email" class="form-control"/>
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DataNascimento" class="form-label"></label>
+                    <input asp-for="DataNascimento" type="datetime-local" value="@Model.DataNascimento" class="form-control"/>
+                    <span asp-validation-for="DataNascimento"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Observacao" class="form-label"></label>
+                    <input asp-for="Observacao" type="text" value="@Model.Observacao" class="form-control"/>
+                    <span asp-validation-for="Observacao"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="RepresentanteId" class="form-label"></label>
+                    <input asp-for="RepresentanteId" type="text" value="@Model.RepresentanteId" class="form-control"/>
+                    <span asp-validation-for="RepresentanteId"></span>
+                </div>
+                <button action="submit" class="btn btn-primary">Editar</button>
+            </form>
+            <br />
+            <a asp-controller="Cliente" asp-action="Index" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+}

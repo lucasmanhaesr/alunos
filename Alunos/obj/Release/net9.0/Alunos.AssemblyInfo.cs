@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Alunos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90a75d200361bf3eb5a8692d30a02904dd4096a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4ae24f26f6649021badad65b081d9d54b419534")]
 [assembly: System.Reflection.AssemblyProductAttribute("Alunos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Alunos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

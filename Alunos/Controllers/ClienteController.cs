@@ -1,5 +1,8 @@
-﻿using Alunos.Models;
+﻿using Alunos.Data.Contexts;
+using Alunos.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Alunos.Controllers
 {
@@ -7,14 +10,11 @@ namespace Alunos.Controllers
     {
         private List<ClienteModel> _clientes;
         public static List<ClienteModel> clientes = new List<ClienteModel>();
+        private readonly DatabaseContext _context;
 
-        public ClienteController() { // Quando a Controller for chamada será gerado a lista de clientes
-            _clientes = ListarClientes();
-        }
-
-        public static List<ClienteModel> ListarClientes() //Método de listar clientes
-        {
-            return clientes;
+        public ClienteController(DatabaseContext context) { 
+            _context = context;
+            _clientes = ListarClientes(); // Quando a Controller for chamada será gerado a lista de clientes
         }
 
         //Pages
@@ -24,7 +24,6 @@ namespace Alunos.Controllers
             return View(_clientes); //Passando a lista de clientes para a View Index()
         }
         
-
         [Route("novo")]
         public IActionResult PageCreateCliente()
         {
@@ -34,43 +33,64 @@ namespace Alunos.Controllers
         [Route("editar/{id}")]
         public IActionResult PageUpdateCliente(int id)
         {
-            ClienteModel? clienteOptional = clientes.Find(c => c.ClienteId == id);
-            return View(clienteOptional);
+            var cliente = _context.Cliente
+                .Include(c => c.Representante)
+                    .FirstOrDefault(c => c.ClienteId == id);
+            if (cliente == null) 
+            {
+                throw new NullReferenceException();
+            }
+            else
+            {
+                return View(cliente);
+            }
         }
 
         [Route("consultar/{id}")]
         public IActionResult PageConsultCliente(int id)
         {
-            ClienteModel? clienteOptional = clientes.Find(c => c.ClienteId == id);
-            return View(clienteOptional);
+            var cliente = _context.Cliente
+                .Include(c => c.Representante) //Carrega a tabela relacionada junto com a tabela principal
+                    .FirstOrDefault(c => c.ClienteId == id); //Encontra o cliente pelo id 
+            if (cliente == null)
+            {
+                throw new NullReferenceException();
+            }
+            else 
+            {
+                return View(cliente);
+            }
         }
 
         //Metódos para manipular a lista
         [HttpPost]
         public IActionResult AddCliente(ClienteModel cliente)
         {
-            clientes.Add(cliente);
+            _context.Cliente.Add(cliente);
+            _context.SaveChanges();
             return RedirectToAction("Index"); 
         }
 
         [HttpPost]
         public IActionResult UpdateCliente(ClienteModel cliente)
         {
-            ClienteModel? clienteOptional = clientes.Find(c => c.ClienteId == cliente.ClienteId);
-            if (clienteOptional != null)
-            {
-                clientes.Remove(clienteOptional);
-                clientes.Add(cliente);
-            }
+            _context.Cliente.Update(cliente);
+            _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public List<ClienteModel> ListarClientes()
+        {
+            var clientes = _context.Cliente.Include(c => c.Representante).ToList();
+            return clientes;
         }
 
         [HttpGet]
         public IActionResult DeleteCliente(int id) 
         {
-            ClienteModel? cliente = clientes.Find(c => c.ClienteId == id);
-            if (cliente != null) {
-                clientes.Remove(cliente);
+           var cliente = _context.Cliente.Find(id);
+            if (cliente != null) { 
+                _context.Remove(cliente);
+                _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }

@@ -3,26 +3,19 @@ using Alunos.Models;
 using Alunos.Services.Interface;
 using Alunos.Services.Service;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Alunos.Controllers
 {
-    public class ClienteController : Controller
+    public class ClienteController(IClienteService clienteService) : Controller
     {
-        private readonly List<ClienteModel> _clientes;
-        private readonly ClienteService _clienteService;
-        
-        public ClienteController(ClienteService clienteService) { 
-            _clientes = ListarClientes(); // Quando a Controller for chamada será gerado a lista de clientes
-            _clienteService = clienteService;
-        }
+        private readonly IClienteService _clienteService = clienteService;
 
         //Pages
         [Route("")]
         public IActionResult Index()
         {
-            return View(_clientes); //Passando a lista de clientes para a View Index()
+            var clientes = _clienteService.GetAll();
+            return View(clientes); //Passando a lista de clientes para a View Index()
         }
         
         [Route("novo")]
@@ -34,17 +27,14 @@ namespace Alunos.Controllers
         [Route("editar/{id}")]
         public IActionResult PageUpdateCliente(int id)
         {
-            {
-                return View(_clienteService.GetById(id));
-            }
+            return View(_clienteService.GetById(id));   
         }
 
         [Route("consultar/{id}")]
         public IActionResult PageConsultCliente(int id)
         {
-            {
-                return View(_clienteService.GetById(id));
-            }
+            var cliente = _clienteService.GetById(id);
+            return View(cliente);
         }
 
         //Metódos para manipular a lista
@@ -61,10 +51,6 @@ namespace Alunos.Controllers
             _clienteService.Update(cliente);
             return RedirectToAction("Index");
         }
-        public List<ClienteModel> ListarClientes()
-        {
-            return (List<ClienteModel>)_clienteService.GetAll();
-        }
 
         [HttpGet]
         public IActionResult DeleteCliente(int id)
@@ -72,6 +58,11 @@ namespace Alunos.Controllers
             var cliente = _clienteService.GetById(id);
             _clienteService.Delete(cliente);
             return RedirectToAction("Index");
+        }
+
+        public List<ClienteModel> ListarClientes()
+        {
+            return (List<ClienteModel>) _clienteService.GetAll();
         }
     }
 }

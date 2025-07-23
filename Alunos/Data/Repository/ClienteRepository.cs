@@ -29,7 +29,7 @@ namespace Alunos.Data.Repository
 
         public ClienteModel getById(int id)
         {
-            var cliente = _context.Cliente.Find(id);
+            var cliente = _context.Cliente.Include(c => c.Representante).FirstOrDefault(c => c.ClienteId == id);
             if (cliente == null)
                 throw new KeyNotFoundException($"Cliente com id {id} não encontrado.");
             return cliente;

@@ -1,5 +1,9 @@
 using Alunos.Data.Contexts;
+using Alunos.Data.Interface;
+using Alunos.Data.Repository;
 using Alunos.Logging;
+using Alunos.Services.Interface;
+using Alunos.Services.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +14,9 @@ builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseNpgsql(connectionSt
 
 #region Registro no IserviceColletion
 builder.Services.AddSingleton<ICustomLogger, FileLogger>();
+
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
 #endregion
 
 // Add services to the container.

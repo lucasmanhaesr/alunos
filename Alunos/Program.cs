@@ -1,4 +1,5 @@
 using Alunos.Data.Contexts;
+using Alunos.Logging;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 //Conexão com DB
 var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
 builder.Services.AddDbContext<DatabaseContext>(opt => opt.UseNpgsql(connectionString).EnableSensitiveDataLogging(true));
+
+#region Registro no IserviceColletion
+builder.Services.AddSingleton<ICustomLogger, FileLogger>();
+#endregion
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -29,8 +34,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Cliente}/{action=Index}/{id?}")
+    pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();

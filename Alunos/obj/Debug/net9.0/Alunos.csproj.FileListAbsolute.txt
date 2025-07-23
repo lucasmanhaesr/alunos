@@ -89,7 +89,6 @@ C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\staticwebassets.build
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\Alunos.dll
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\refint\Alunos.dll
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\Alunos.pdb
@@ -196,3 +195,4 @@ C:\Users\Lucas\source\repos\Alunos\Alunos\bin\Debug\net9.0\zh-Hant\Microsoft.Cod
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\Alunos.csproj.AssemblyReference.cache
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\Alunos.sourcelink.json
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\Alunos.csproj.Up2Date
+C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

@@ -15,7 +15,7 @@ namespace Alunos.Controllers
         public IActionResult Index()
         {
             var clientes = _clienteService.GetAll();
-            return View(clientes); //Passando a lista de clientes para a View Index()
+            return View((List<ClienteModel>)clientes); //Passando a lista de clientes para a View Index()
         }
         
         [Route("novo")]

@@ -30,7 +30,7 @@ namespace Alunos.Test
             // Configura o contexto mock para retornar o DbSet mock quando a propriedade Clientes for acessada
             _mockContext.Setup(m => m.Cliente).Returns(_mockSet);
             // Inicializa o controller com o contexto mock
-            _controller = new ClienteController(_mockContext.Object);
+            //_controller = new ClienteController(_mockContext.Object);
         }
 
         // Método para criar e configurar um DbSet mock para ClienteModel

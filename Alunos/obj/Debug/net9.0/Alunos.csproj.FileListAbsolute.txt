@@ -195,4 +195,3 @@ C:\Users\Lucas\source\repos\Alunos\Alunos\bin\Debug\net9.0\zh-Hant\Microsoft.Cod
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\Alunos.csproj.AssemblyReference.cache
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\Alunos.sourcelink.json
 C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\Alunos.csproj.Up2Date
-C:\Users\Lucas\source\repos\Alunos\Alunos\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
